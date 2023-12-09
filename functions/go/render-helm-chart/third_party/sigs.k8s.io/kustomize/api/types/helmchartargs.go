@@ -63,6 +63,9 @@ type TemplateOptions struct {
 	// ApiVersions is the kubernetes apiversions used for Capabilities.APIVersions
 	ApiVersions []string `json:"apiVerions,omitempty" yaml:"apiVersions,omitempty"`
 
+	// KubeVersion is the Kubernetes version used for Capabilities.KubeVersion
+	KubeVersion string `json:"kubeVersion,omitempty" yaml:"kubeVersion,omitempty"`
+
 	// ReleaseName replaces RELEASE-NAME in chart template output,
 	// making a particular inflation of a chart unique with respect to
 	// other inflations of the same chart in a cluster. It's the first
@@ -85,6 +88,9 @@ type TemplateOptions struct {
 	// IncludeCRDs specifies if Helm should also generate CustomResourceDefinitions.
 	// Defaults to false.
 	IncludeCRDs bool `json:"includeCRDs,omitempty" yaml:"includeCRDs,omitempty"`
+
+	// NoHooks prevents hooks from running during install.
+	NoHooks bool `json:"noHooks,omitempty" yaml:"noHooks,omitempty"`
 
 	// SkipTests skips tests from templated output.
 	SkipTests bool `json:"skipTests,omitempty" yaml:"skipTests,omitempty"`

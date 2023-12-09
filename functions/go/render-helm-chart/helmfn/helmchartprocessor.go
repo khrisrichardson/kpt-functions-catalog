@@ -129,6 +129,9 @@ func (hcp *HelmChartProcessor) configMapArgs(
 	if val, found, _ := m.NestedString("data", "repo"); found {
 		p.ChartArgs.Repo = val
 	}
+	if val, found, _ := m.NestedString("data", "kubeVersion"); found {
+		p.TemplateOptions.KubeVersion = val
+	}
 	if val, found, _ := m.NestedString("data", "releaseName"); found {
 		p.TemplateOptions.ReleaseName = val
 	}
@@ -141,6 +144,11 @@ func (hcp *HelmChartProcessor) configMapArgs(
 	if val, found, _ := m.NestedString("data", "includeCRDs"); found {
 		if val == "true" {
 			p.TemplateOptions.IncludeCRDs = true
+		}
+	}
+	if val, found, _ := m.NestedString("data", "noHooks"); found {
+		if val == "true" {
+			p.TemplateOptions.NoHooks = true
 		}
 	}
 	if val, found, _ := m.NestedString("data", "skipTests"); found {

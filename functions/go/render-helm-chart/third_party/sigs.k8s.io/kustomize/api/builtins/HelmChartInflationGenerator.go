@@ -349,6 +349,9 @@ func (p *HelmChartInflationGeneratorPlugin) pullNonOCIRepo() ([]string, error) {
 
 func (p *HelmChartInflationGeneratorPlugin) templateArgs() []string {
 	args := []string{"template"}
+	if p.KubeVersion != "" {
+		args = append(args, "--kube-version", p.KubeVersion)
+	}
 	if p.ReleaseName != "" {
 		args = append(args, p.ReleaseName)
 	}
@@ -378,6 +381,9 @@ func (p *HelmChartInflationGeneratorPlugin) templateArgs() []string {
 	}
 	if p.IncludeCRDs {
 		args = append(args, "--include-crds")
+	}
+	if p.NoHooks {
+		args = append(args, "--no-hooks")
 	}
 	if p.SkipTests {
 		args = append(args, "--skip-tests")
